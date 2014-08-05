@@ -26,7 +26,7 @@ describe OmniAuth::Strategies::SeaconLogistics do
 
   describe '#raw_info' do
     it 'makes a call to /oauth2.0/profile' do
-      expect(access_token).to receive(:get).with('/oauth2.0/profile').and_return(response)
+      expect(access_token).to receive(:get).with('oauth2.0/profile').and_return(response)
 
       expect(subject.raw_info).to eq(parsed_response)
     end
