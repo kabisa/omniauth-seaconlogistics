@@ -41,7 +41,7 @@ For staging or local use, you can override the authentication endpoint the follo
         	     Rails.application.secrets.omniauth_provider_key,
            	 	 Rails.application.secrets.omniauth_provider_secret,
            		 setup: lambda { |env|
-             		env['omniauth.strategy'].options[:client_options].site = 'http://<url>/cas'
+             		env['omniauth.strategy'].options[:client_options].site = 'http://<url>/'
 		            env['omniauth.strategy'].options[:client_options].authorize_url = 'http://<url>/authorize'
  		            env['omniauth.strategy'].options[:client_options].token_url = 'http://<url>/accessToken'
         		 }
