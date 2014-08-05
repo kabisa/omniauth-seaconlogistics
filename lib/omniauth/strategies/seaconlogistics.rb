@@ -20,7 +20,7 @@ module OmniAuth
 
       info do
         {
-          name: name,
+          name: full_name,
           first_name: attributes['first_name'],
           last_name: attributes['last_name'],
           email: attributes['email'],
@@ -36,12 +36,12 @@ module OmniAuth
       def raw_info
         access_token.options[:mode] = :query
         access_token.options[:param_name] = :access_token
-        @raw_info ||= access_token.get('/oauth2.0/profile').parsed
+        @raw_info ||= access_token.get('oauth2.0/profile').parsed
       end
 
       private
 
-      def name
+      def full_name
         [attributes['first_name'], attributes['last_name']].join(' ')
       end
 
@@ -51,3 +51,5 @@ module OmniAuth
     end
   end
 end
+
+OmniAuth.config.add_camelization 'seaconlogistics', 'SeaconLogistics'
