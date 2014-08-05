@@ -2,7 +2,7 @@
 
 # Omniauth::SeaconLogistics
 
-TODO: Write a gem description
+OmniAuth OAuth2 authentication strategy for Seacon Logistics
 
 ## Installation
 
@@ -20,7 +20,35 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Put the provided key and secret in your config/secrets.yml
+
+	development:
+	  omniauth_provider_key: <key here>
+	  omniauth_provider_secret: <secret here>
+
+For production use do the following (in config/initializers/omniauth.rb):
+
+	Rails.application.config.middleware.use OmniAuth::Builder do
+    	provider :seaconlogistics,
+           		 Rails.application.secrets.omniauth_provider_key,
+           		 Rails.application.secrets.omniauth_provider_secret
+    end
+             
+For staging or local use, you can override the authentication endpoint the following way:
+
+	Rails.application.config.middleware.use OmniAuth::Builder do
+		provider :seaconlogistics,
+        	     Rails.application.secrets.omniauth_provider_key,
+           	 	 Rails.application.secrets.omniauth_provider_secret,
+           		 setup: lambda { |env|
+             		env['omniauth.strategy'].options[:client_options].site = 'http://<url>/cas'
+		            env['omniauth.strategy'].options[:client_options].authorize_url = 'http://<url>/authorize'
+ 		            env['omniauth.strategy'].options[:client_options].token_url = 'http://<url>/accessToken'
+        		 }
+	end
+
+
+
 
 ## Contributing
 
