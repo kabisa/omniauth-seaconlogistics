@@ -17,6 +17,8 @@ module OmniAuth
       }
 
       def raw_info
+        access_token.options[:mode] = :query
+        access_token.options[:param_name] = :access_token
         @raw_info ||= access_token.get('/oauth2.0/profile').parsed
       end
     end
