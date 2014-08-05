@@ -16,10 +16,27 @@ module OmniAuth
         parse: :query
       }
 
+      uid { raw_info['id'] }
+
+      info do
+        {
+          first_name: attributes['first_name'],
+          last_name: attributes['last_name'],
+          email: attributes['email'],
+          applications: attributes['applications']
+        }
+      end
+
       def raw_info
         access_token.options[:mode] = :query
         access_token.options[:param_name] = :access_token
         @raw_info ||= access_token.get('/oauth2.0/profile').parsed
+      end
+
+      private
+
+      def attributes
+        raw_info['attributes'].reduce Hash.new, :merge
       end
     end
   end
