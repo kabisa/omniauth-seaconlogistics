@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kabisaict/omniauth-seaconlogistics.svg?branch=master)](https://travis-ci.org/kabisaict/omniauth-seaconlogistics)
+
 # Omniauth::SeaconLogistics
 
 TODO: Write a gem description
