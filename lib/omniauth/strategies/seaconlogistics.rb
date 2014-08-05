@@ -20,9 +20,15 @@ module OmniAuth
 
       info do
         {
+          name: name,
           first_name: attributes['first_name'],
           last_name: attributes['last_name'],
           email: attributes['email'],
+        }
+      end
+
+      extra do
+        {
           applications: attributes['applications']
         }
       end
@@ -34,6 +40,10 @@ module OmniAuth
       end
 
       private
+
+      def name
+        [attributes['first_name'], attributes['last_name']].join(' ')
+      end
 
       def attributes
         raw_info['attributes'].reduce Hash.new, :merge
