@@ -23,13 +23,14 @@ module OmniAuth
           name: full_name,
           first_name: attributes['first_name'],
           last_name: attributes['last_name'],
-          email: attributes['email'],
+          email: attributes['email']
         }
       end
 
       extra do
         {
-          applications: attributes['applications']
+          applications: attributes['applications'],
+          customer_number: attributes['customer_number']
         }
       end
 
